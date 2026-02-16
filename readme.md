@@ -49,6 +49,34 @@ mahaveer@dlbhu-Veriton-S2690G:/etc/apache2/sites-enabled$ cat testsite.conf
 mahaveer@dlbhu-Veriton-S2690G:/etc/apache2/sites-enabled$ 
 
 ```
+### Production Grade
+```bash
+mahaveer@dlbhu-Veriton-S2690G:/etc/apache2/sites-enabled$ cat testsite.conf
+<VirtualHost *:80>
+    ServerName localhost
+
+    ProxyPreserveHost On
+    ProxyPass /static/ !
+    
+    ProxyPass / http://127.0.0.1:8000/
+    ProxyPassReverse / http://127.0.0.1:8000/
+
+   # Alias /static/ /home/mahaveer/myproject/staticfiles/
+    Alias /static/ /var/www/testsite/static/
+
+    <Directory /var/www/testsite/static/>
+       Require all granted
+    </Directory>
+
+   # <Directory /home/mahaveer/myproject/staticfiles>
+    #    Require all granted
+   # </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/myproject_error.log
+    CustomLog ${APACHE_LOG_DIR}/myproject_access.log combined
+</VirtualHost>
+
+```
 
 ## Systemd file : gunicorn.service
 ```bash

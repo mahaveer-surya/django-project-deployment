@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Static Test</title>
+
+    <!-- Project static -->
+    <link rel="stylesheet" href="{% static 'project.css' %}">
+
+    <!-- App static -->
+    <link rel="stylesheet" href="{% static 'main/app.css' %}">
+</head>
+<body>
+
+<h1>Project Level Static (Red)</h1>
+<p>App Level Static (Blue)</p>
+<p>update to check realtime use</p>
+<img src="{% static 'main/images/logo.png' %}" alt="My Image">
+
+</body>
+</html>
